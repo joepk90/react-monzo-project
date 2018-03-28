@@ -1,44 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import {Router, browserHistory} from 'react-Router';
+// import reducers from './reducers';
+import routes from './routes';
+// import promise from 'redux-promise';
 
-import App from './components/app';
-import MonzoRequest from './components/monzo';
+const createStoreWithMiddleware = applyMiddleware(
+  promise
+)(createStore);
 
-//TODO Setup React Router / Rename AppHold
-class AppHold extends Component {
-  constructor(props) {
-    super(props)
-
-      this.state = {isLoggedIn: false}
-      this.checkAuth = this.checkAuth.bind(this);
-  }
-
-  checkAuth() {
-    const url = new URL(window.location.href);
-    const code = url.searchParams.get("code");
-    const urlState = url.searchParams.get("state");
-    const randomString  = "aefhiewuhFGIWEFIEWIFBI";
-
-    if ( code !== null || urlState === randomString ) {
-          // console.log('I am logged in.')
-          this.setState({ isLoggedIn: true});
-    }
-  }
-
-  componentWillMount() {
-      this.checkAuth();
-  }
-
-  render() {
-    const isLoggedIn = this.state.isLoggedIn;
-    const app = (isLoggedIn === true) ? ( <App /> ) : ( <MonzoRequest /> );
-
-    return (
-      <div>
-        {app}
-      </div>
-    );
-  }
-}
-
- ReactDOM.render(<AppHold />, document.querySelector('.container'));
+ReactDOM.render(
+  <Provider store={createStoreWithMiddleware(reducers)}>
+    <Router history={browserHistory} routes={routes} />
+  </Provider>
+  , document.querySelector('.container'));
