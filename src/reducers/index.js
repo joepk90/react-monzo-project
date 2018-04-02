@@ -4,7 +4,7 @@ import TransactionsReducer from './reducer_transactions';
 
 const rootReducer = combineReducers({
   accounts: AccountsReducer,
-  transactions: TransactionsReducer,
+  transactions: TransactionsReducer
 });
 
 // const store = createStore(

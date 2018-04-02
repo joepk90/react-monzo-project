@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchTransactions } from '../actions/index';
+import Navigation from './navigation';
 
 import TransactionsList from '../containers/transactions_list'
 
@@ -15,7 +16,7 @@ class TransactionsIndex extends Component {
 
   componentWillMount() {
     this.props.fetchTransactions();
-    // console.log(this.props);
+    console.log(this.props);
   }
 
 onClick(event) {
@@ -26,26 +27,12 @@ console.log(this.props);
 
 }
 
-renderOptionHeaders() {
-
-  return (
-    <nav>
-      <div className="nav nav-tabs" id="nav-tab" role="tablist">
-          <a className="nav-item nav-link" onClick={this.onClick} data-toggle="tab" role="tab">Accounts</a>
-          <a className="nav-item nav-link" onClick={this.onClick} data-toggle="tab" role="tab">Transactions</a>
-          <a className="nav-item nav-link" onClick={this.onClick} data-toggle="tab" role="tab">Balance</a>
-          <a className="nav-item nav-link" onClick={this.onClick} data-toggle="tab" role="tab">transactions</a>
-      </div>
-    </nav>
-  );
-
-}
 
   render() {
     return (
       <div>
-      <h1>Accounts</h1>
-          {this.renderOptionHeaders()}
+      <h1>Transactions</h1>
+        <Navigation />
         <TransactionsList />
       </div>
     );

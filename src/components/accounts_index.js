@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchAccounts } from '../actions/index';
-
-import AccountsList from '../containers/accounts_list'
+import { Link } from 'react-router-dom';
+import AccountsList from '../containers/accounts_list';
+import Navigation from './navigation';
 
 class AccountsIndex extends Component {
 
@@ -15,29 +16,12 @@ class AccountsIndex extends Component {
 
   componentWillMount() {
     this.props.fetchAccounts();
-    // console.log(this.props);
+    console.log(this.props);
   }
 
 onClick(event) {
   event.preventDefault();
   this.props.fetchAccounts()
-
-console.log(this.props);
-
-}
-
-renderOptionHeaders() {
-
-  return (
-    <nav>
-      <div className="nav nav-tabs" id="nav-tab" role="tablist">
-          <a className="nav-item nav-link" onClick={this.onClick} data-toggle="tab" role="tab">Accounts</a>
-          <a className="nav-item nav-link" onClick={this.onClick} data-toggle="tab" role="tab">Transactions</a>
-          <a className="nav-item nav-link" onClick={this.onClick} data-toggle="tab" role="tab">Balance</a>
-          <a className="nav-item nav-link" onClick={this.onClick} data-toggle="tab" role="tab">transactions</a>
-      </div>
-    </nav>
-  );
 
 }
 
@@ -45,7 +29,7 @@ renderOptionHeaders() {
     return (
       <div>
       <h1>Accounts</h1>
-          {this.renderOptionHeaders()}
+        <Navigation />
         <AccountsList />
       </div>
     );

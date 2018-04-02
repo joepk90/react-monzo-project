@@ -5,11 +5,11 @@ import { bindActionCreators } from 'redux';
 // import { Link } from 'react-router';
 
 
-class AccountsList extends Component {
+class TransactionsList extends Component {
 
 
 RenderTransactions() {
-
+console.log('state test: ',this.props);
     return this.props.transactions.map((transaction) => {
       return (
         <li key={transaction.id} className="list-group-item">{transaction.description}: {transaction.amount}</li>
@@ -37,8 +37,6 @@ function mapStateToProps(state) {
   };
 }
 
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators({fetchTransactions: fetchTransactions}, dispatch);
-// }
 
-export default connect(mapStateToProps)(AccountsList);
+
+export default connect(mapStateToProps)(TransactionsList);
