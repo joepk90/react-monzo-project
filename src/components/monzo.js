@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 
 //https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send
 
-
 class MonzoRequest extends Component {
 
   constructor(props) {
@@ -17,6 +16,7 @@ class MonzoRequest extends Component {
       this.onFormSubmit = this.onFormSubmit.bind(this);
     }
 
+
     onInputChange(event) {
       // console.log(event.target.value)
       this.setState({ term: event.target.value});
@@ -26,7 +26,7 @@ class MonzoRequest extends Component {
     onFormSubmit(event) {
       event.preventDefault();
 
-      const redirectUrl = "http://localhost:8080";
+      const redirectUrl = "http://localhost:8080/accounts";
       const monzoClientId = this.state.term;
       //TODO add random string to application state
       const randomString  = "aefhiewuhFGIWEFIEWIFBI";

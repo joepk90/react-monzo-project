@@ -9,7 +9,21 @@ class App extends Component {
 
       this.state = {isLoggedIn: false}
       this.checkAuth = this.checkAuth.bind(this);
+      this.testCall = this.testCall.bind(this);
   }
+
+  // testCall() {
+  //   const ROOT_URL = 'https://api.monzo.com/';
+  //   const ACCESS_TOKEN = '?key=sgjvwojsggowrgoworg';
+  //   const AUHTORISATION_CODE = ''
+  //   const CLIENT_ID = '';
+  //   const CLIENT_SECRET = '';
+  //   const REDIRECT_URI = '';
+  //   const request = axios.get(`${ROOT_URL}/oauth2/token/grant_type=authorization_code/client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&redirect_uri=$${REDIRECT_URI}&code=${AUHTORISATION_CODE}`)
+  //
+  //   console.log(request);
+  //
+  // }
 
   checkAuth() {
     const url = new URL(window.location.href);
@@ -20,6 +34,7 @@ class App extends Component {
     if ( code !== null || urlState === randomString ) {
           // console.log('I am logged in.')
           this.setState({ isLoggedIn: true});
+          this.testCall()
     }
   }
 
