@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchAccounts } from '../actions/index';
+import { fetchTransactions } from '../actions/index';
 
-import AccountsList from '../containers/accounts_list'
+import TransactionsList from '../containers/transactions_list'
 
-class AccountsIndex extends Component {
+class TransactionsIndex extends Component {
 
   constructor(props) {
     super(props);
@@ -14,13 +14,13 @@ class AccountsIndex extends Component {
   }
 
   componentWillMount() {
-    this.props.fetchAccounts();
+    this.props.fetchTransactions();
     // console.log(this.props);
   }
 
 onClick(event) {
   event.preventDefault();
-  this.props.fetchAccounts()
+  this.props.fetchTransactions()
 
 console.log(this.props);
 
@@ -46,19 +46,19 @@ renderOptionHeaders() {
       <div>
       <h1>Accounts</h1>
           {this.renderOptionHeaders()}
-        <AccountsList />
+        <TransactionsList />
       </div>
     );
   }
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchAccounts }, dispatch);
+  return bindActionCreators({ fetchTransactions }, dispatch);
 }
 
 function mapStateToProps(state) {
   // console.log(accounts);
-    return {accounts: state.accounts};
+    return {transactions: state.transactions};
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AccountsIndex);
+export default connect(mapStateToProps, mapDispatchToProps)(TransactionsIndex);

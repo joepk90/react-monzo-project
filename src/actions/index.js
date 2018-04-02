@@ -1,14 +1,20 @@
 import axios from 'axios';
 
+export const FETCH_ACCOUNTS = 'FETCH_ACCOUNTS';
 export const FETCH_TRANSACTIONS = 'FETCH_TRANSACTIONS';
 
 const ROOT_URL = 'https://api.monzo.com/';
 const ACCESS_TOKEN = '?key=sgjvwojsggowrgoworg';
+const AUHTORISATION_CODE = ''
+const CLIENT_ID = '';
+const CLIENT_SECRET = '';
+const REDIRECT_URI = '';
 
 export function fetchTransactions() {
   // const request = axios.get(`${ROOT_URL}/transactions/${ACCESS_TOKEN}`)
-  const request = {
-    "transactions": [
+  // const request = axios.get(`${ROOT_URL}/oauth2/token/grant_type=authorization_code/client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&redirect_uri=$${REDIRECT_URI}&code=${AUHTORISATION_CODE}`)
+  // const request = axios({ method: 'POST', url: ROOT_URL, headers: {autorizacion: localStorage.token}, data: { user: 'name' } })
+  const data = [
         {
             "account_balance": 13013,
             "amount": -510,
@@ -38,9 +44,34 @@ export function fetchTransactions() {
             "category": "eating_out"
         },
     ]
-}
+    const request = {data};
+
   return {
     type: FETCH_TRANSACTIONS,
+    payload: request
+  };
+}
+
+export function fetchAccounts() {
+  // const request = axios.get(`${ROOT_URL}/transactions/${ACCESS_TOKEN}`)
+  // const request = axios.get(`${ROOT_URL}/oauth2/token/grant_type=authorization_code/client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&redirect_uri=$${REDIRECT_URI}&code=${AUHTORISATION_CODE}`)
+  // const request = axios({ method: 'POST', url: ROOT_URL, headers: {autorizacion: localStorage.token}, data: { user: 'name' } })
+  const data = [
+        {
+            "id": "acc_00009237aqC8c5umZmrRdh",
+            "description": "Peter Pan's Account",
+            "created": "2015-11-13T12:17:42Z"
+        },
+        {
+            "id": "acc_00009237aqC8c5umZmrRdh",
+            "description": "Peter Pan's Account",
+            "created": "2015-11-13T12:17:42Z"
+        },
+    ]
+    const request = {data};
+
+  return {
+    type: FETCH_ACCOUNTS,
     payload: request
   };
 }
